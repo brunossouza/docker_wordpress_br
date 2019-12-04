@@ -71,7 +71,7 @@ RUN groupadd desenv && useradd -s /bin/false -g desenv -d /var/www desenv
 
 VOLUME /var/www/html
 
-ENV WORDPRESS_VERSION 5.2.3
+ENV WORDPRESS_VERSION 5.3
 
 RUN set -ex; \
     curl -o wordpress.zip -fSL "https://downloads.wordpress.org/release/pt_BR/wordpress-${WORDPRESS_VERSION}.zip"; \

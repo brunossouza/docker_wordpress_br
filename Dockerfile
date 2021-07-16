@@ -1,7 +1,7 @@
 FROM php:7.3-apache
 
 # install the PHP extensions we need (https://make.wordpress.org/hosting/handbook/handbook/server-environment/#php-extensions)
-RUN apt-get update && apt-get install -y unzip 
+RUN apt-get update && apt-get install -y unzip bash
 
 RUN set -ex; \
     \
@@ -13,7 +13,7 @@ RUN set -ex; \
     libmagickwand-dev \
     libpng-dev \
     libzip-dev \
-    ; \ 
+    ; \
     docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr; \
     docker-php-ext-install -j "$(nproc)" \
     bcmath \
@@ -70,7 +70,7 @@ RUN groupadd desenv && useradd -s /bin/false -g desenv -d /var/www desenv
 
 VOLUME /var/www/html
 
-ENV WORDPRESS_VERSION 5.3
+ENV WORDPRESS_VERSION 5.7.2
 
 RUN set -ex; \
     curl -o wordpress.zip -fSL "https://downloads.wordpress.org/release/pt_BR/wordpress-${WORDPRESS_VERSION}.zip"; \

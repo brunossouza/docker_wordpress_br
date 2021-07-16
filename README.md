@@ -2,7 +2,7 @@
 
 user id - 1000
 
-WORDPRESS_VERSION 5.3.2
+WORDPRESS_VERSION 5.7.2
 
 Environment variables: https://hub.docker.com/_/wordpress
 

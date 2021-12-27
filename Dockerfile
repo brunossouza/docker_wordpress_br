@@ -1,4 +1,4 @@
-FROM php:7.3-apache
+FROM php:7.4-apache
 
 # install the PHP extensions we need (https://make.wordpress.org/hosting/handbook/handbook/server-environment/#php-extensions)
 RUN apt-get update && apt-get install -y unzip bash
@@ -14,7 +14,8 @@ RUN set -ex; \
     libpng-dev \
     libzip-dev \
     ; \
-    docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr; \
+    docker-php-ext-configure gd  \
+    ; \
     docker-php-ext-install -j "$(nproc)" \
     bcmath \
     exif \
@@ -70,7 +71,7 @@ RUN groupadd desenv && useradd -s /bin/false -g desenv -d /var/www desenv
 
 VOLUME /var/www/html
 
-ENV WORDPRESS_VERSION 5.8
+ENV WORDPRESS_VERSION 5.8.2
 
 RUN set -ex; \
     curl -o wordpress.zip -fSL "https://downloads.wordpress.org/release/pt_BR/wordpress-${WORDPRESS_VERSION}.zip"; \

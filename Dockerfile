@@ -67,11 +67,11 @@ RUN { \
 
 RUN a2enmod rewrite expires
 
-RUN groupadd desenv && useradd -s /bin/false -g desenv -d /var/www desenv
+RUN groupadd wordpress && useradd -s /bin/false -g wordpress -d /var/www wordpress
 
 VOLUME /var/www/html
 
-ENV WORDPRESS_VERSION 5.8.2
+ARG WORDPRESS_VERSION
 
 RUN set -ex; \
     curl -o wordpress.zip -fSL "https://downloads.wordpress.org/release/pt_BR/wordpress-${WORDPRESS_VERSION}.zip"; \
@@ -80,7 +80,7 @@ RUN set -ex; \
     # upstream tarballs include ./wordpress/ so this gives us /usr/src/wordpress
     unzip wordpress.zip -d /usr/src/; \
     rm wordpress.zip; \
-    chown -R desenv:desenv /usr/src/wordpress
+    chown -R wordpress:wordpress /usr/src/wordpress
 
 COPY docker-entrypoint.sh /usr/local/bin/
 
